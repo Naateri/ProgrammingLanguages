@@ -1,0 +1,33 @@
+{-
+    Tail Recursive power
+-}
+
+power_temp b 0 temp = 1
+
+power_temp b 1 temp = b
+
+power_temp b n temp = power_temp (b * temp) (n-1) (temp) 
+
+power a b = power_temp a b a
+
+{--------------------------------------------}
+
+{-
+    Super Digit
+-}
+
+divide_num 0 temp = temp
+
+divide_num x temp = divide_num a c where
+    c = temp + x `mod` 10
+    a = x `div` 10
+    
+super_digit x = something where
+    something = if x `div` 10 == 0 then x else super_digit (divide_num x 0)
+
+main = do
+    print (power 3 1)
+    print (power 10 0)
+    print (power 2 10)
+    print (super_digit 1)
+    print (super_digit 9875)
